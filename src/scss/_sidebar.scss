@@ -1,0 +1,102 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: toRem(250);
+    height: fit-content;
+    padding: toRem(10);
+    gap: toRem(20);
+    background: $clWhite;
+    border: toRem(1) solid #c6c6c6;
+    border-radius: toRem(10);
+
+    @media (max-width: toRem(649.98)) {
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+    }
+
+    @media (max-width: toRem(479.98)) {
+        flex-direction: column;
+        padding: toRem(20);
+        // width: fit-content;
+        // align-self: center;
+    }
+
+    &__avatar {
+        width: toRem(230);
+        height: auto;
+        aspect-ratio: 500 / 644;
+        border-radius: toRem(10);
+
+        @media (max-width: toRem(649.98)) {
+            width: toRem(180);
+            height: toRem(180);
+            object-fit: cover;
+            object-position: top;
+        }
+
+        @media (max-width: toRem(479.98)) {
+            align-self: center;
+        }
+    }
+    
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: toRem(10);
+    }
+    
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: toRem(10);
+    }
+
+    &__icon {
+        color: $clGreen;
+        font-size: toRem(20);
+    }
+    
+    &__contact {
+        color: #0071a1;
+        font-size: toRem(16);
+        font-weight: 600;
+    }
+
+    &__socials {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: toRem(30);
+        flex: 0 1 toRem(250);
+
+        @media (max-width: toRem(767.98)) {
+            flex: 0 0 100%;
+        }
+    }
+
+    &__link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: toRem(25);
+        height: toRem(25);
+        flex: 0 0 toRem(25);
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+
+        @media (any-hover: hover) {
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            aspect-ratio: 1 / 1;
+        }
+    }
+}

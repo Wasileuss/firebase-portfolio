@@ -1,0 +1,22 @@
+.footer {
+    background-color: #0071a1;
+
+    &__container {
+        display: flex;
+        align-items: center;
+        padding: toRem(15);
+        gap: toRem(20);
+        color: #ffffff;
+
+        @media (max-width: toRem(767.98)) {
+            flex-direction: column;
+            
+        }
+    }
+
+    &__copyright {
+        flex-grow: 1;
+        text-align: center;
+    }
+}
+  

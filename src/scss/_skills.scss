@@ -1,0 +1,5 @@
+.skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(toRem(370), 1fr));
+    gap: toRem(20);
+}

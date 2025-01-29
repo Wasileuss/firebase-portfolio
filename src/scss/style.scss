@@ -1,0 +1,108 @@
+@use "sass:math";
+
+// Мінімальна ширина сторінки
+$minWidth: 320;
+// Ширина полотна (макету)
+$maxWidth: 1440;
+// Ширина обмежуючого контейнера (0 = немає обмеження)
+$maxWidthContainer: 1250;
+// Загальний відступ у контейнера
+// (30 = по 15px ліворуч і праворуч, 0 = немає відступу)
+$containerPadding: 30;
+// Ширина спрацьовування першого брейкпоінту
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+@import "_reset.scss";
+@import "_variables.scss";
+@import "_functions.scss";
+@import "_header.scss";
+@import "_sidebar.scss";
+@import "_navigation.scss";
+@import "_skills.scss";
+@import "_footer.scss";
+@import "_error-page.scss";
+
+body {
+    font-family: 'Montserrat', sans-serif;
+
+    &.lock {
+        overflow: hidden;
+    }
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+	overflow: clip;
+    min-height: 100vh;
+}
+
+[class*="__container"] {
+	max-width: toRem(1250);
+	margin: 0 auto;
+	padding-left: toRem(15);
+	padding-right: toRem(15);
+}
+
+.page {
+    flex-grow: 1;
+        background: #f7f7f7;
+
+    &__container {
+        margin: toRem(15) auto;
+        display: flex;
+        gap: toRem(15);
+        width: 100%;
+    }
+
+    &__content {
+        padding: toRem(30) toRem(15);
+        flex-grow: 1;
+        border: 1px solid #c6c6c6;
+        border-radius: toRem(10);
+    }
+}
+
+
+.title {
+    color: #0071a1;
+    @include adaptiveValue('font-size', 38, 30, 0, $containerWidth, 768);
+    line-height: 1.25;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: toRem(20);
+}
+
+.about {
+    display: flex;
+    flex-grow: 1;
+    gap: toRem(15);
+
+    @media (max-width: toRem(649.98)) {
+        flex-direction: column;
+        
+    }
+
+    &__content {
+        flex: 0 1 60%;
+    }
+
+    &__description {
+        line-height: 1.5;
+    }
+}
+
+.projects,
+.courses,
+.admin,
+.images {
+    flex-grow: 1;
+}
+
+.input-border {
+    display: flex;
+    border: 1px solid #c6c6c6;
+    border-radius: toRem(10);
+    padding: toRem(5) toRem(15);
+    margin: toRem(5);
+}

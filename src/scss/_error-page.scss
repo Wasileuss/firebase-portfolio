@@ -1,0 +1,45 @@
+.error-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: toRem(20);
+    background-color: #c7c7c7;
+
+    &__title {
+        color: #d06b00;
+        font-size: toRem(100);
+        font-weight: 700;
+    }
+
+    &__subtitle {
+        color: #0071a1;
+        font-size: toRem(24);
+        font-weight: 600;
+    }
+    
+    &__text {
+        
+        p {
+            text-align: center;
+            font-size: toRem(20);
+        }
+    
+        p:not(:last-child) {
+            margin-bottom: toRem(10);
+        }
+    }
+
+    &__link {
+        font-weight: 700;
+        color: #ff0000;
+
+        @media (any-hover: hover) {
+            &:hover {
+                color: #0000ff;
+            }
+            
+        }
+    }
+}

@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Phone",
+        "body": "+38 067 711 83 69",
+        "href": "tel:+380677118369"
+    },
+    {
+        "title": "Email",
+        "body": "wasyl.lviv@gmail.com",
+        "href": "mailto:wasyl.lviv@gmail.com"
+    },
+    {
+        "title": "Skype",
+        "body": "wasyl.lviv",
+        "href": "skype:wasyl.lviv?call"
+    },
+    {
+        "title": "Telegram",
+        "body": "@wasyl_lviv",
+        "href": "https://t.me/wasyl_lviv",
+        "target": "_blank",
+        "rel": "noreferrer"
+    },
+    {
+        "title": "CV",
+        "body": "Download CV",
+        "href": "https://drive.google.com/file/d/1AXdXTSxKJOI0zKixZwa9_ig7vT-F6sMK/view?usp=sharing",
+        "target": "_blank",
+        "rel": "noreferrer"
+
+    }
+]

@@ -1,0 +1,50 @@
+import React, { useState, useEffect } from "react";
+import { db } from "../firebaseConfig";
+import { collection, onSnapshot } from "firebase/firestore";
+import { Link } from "react-router-dom";
+import sertificates from '../data/sertificates.json';
+function Sert() {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(collection(db, "certificates"), (snapshot) => {
+            const updatedData = snapshot.docs.map((val) => ({
+                ...val.data(),
+                id: val.id,
+            }));
+            setData(updatedData);
+        });
+
+        return () => {
+            unsubscribe();
+        };
+    }, []);
+
+    const sortedData = data.slice().sort((a, b) => b.timestamp?.seconds - a.timestamp?.seconds);
+
+    return (
+        <React.Fragment>
+            <div className='sert'>
+                <h2 className='sert__title title'>Sertificates</h2>
+                <ul className='sert__list'>
+                    {sertificates.map((item,idx) =>
+                        <li className='sert__item' title={item.title} key={idx}>
+                            <Link to={item.href} className='sert__link' target={item.target} rel={item.rel}>{item.school}</Link>
+                        </li>
+                    )}
+                </ul>
+                <ul className='sert__list'>
+                    {sortedData.map((value) => (
+                        <li key={value.id}>
+                            <Link className="input-border" to={value.linkVal} target="_blank" rel="noopener noreferrer">{value.titleVal}</Link>
+                            <img loading="preload" src={value.imgUrl} alt="img" width="200px" />
+                            <p className="input-border">{value.descVal}</p>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </React.Fragment>
+    );
+}
+
+export default Sert;
