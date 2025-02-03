@@ -1,41 +1,48 @@
+@use "functions" as *;
+@use "variables" as *;
+
 .sidebar {
     display: flex;
     flex-direction: column;
-    width: toRem(250);
+    width: 250px;
     height: fit-content;
-    padding: toRem(10);
-    gap: toRem(20);
+    padding: 10px;
+    gap: 20px;
     background: $clWhite;
-    border: toRem(1) solid #c6c6c6;
-    border-radius: toRem(10);
+    border: 1px solid #c6c6c6;
+    border-radius: 10px;
 
-    @media (max-width: toRem(649.98)) {
+    @media (max-width: 649.98px) {
         flex-direction: row;
         align-items: center;
         width: 100%;
     }
 
-    @media (max-width: toRem(479.98)) {
+    @media (max-width: 479.98px) {
         flex-direction: column;
-        padding: toRem(20);
-        // width: fit-content;
-        // align-self: center;
+        padding: 20px;
     }
 
     &__avatar {
-        width: toRem(230);
-        height: auto;
-        aspect-ratio: 500 / 644;
-        border-radius: toRem(10);
+        width: 230px;
+        height: 230px;
+        aspect-ratio: 1 / 1;
+        border-radius: 5px;
+        overflow: hidden;
 
-        @media (max-width: toRem(649.98)) {
-            width: toRem(180);
-            height: toRem(180);
+        img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             object-position: top;
         }
 
-        @media (max-width: toRem(479.98)) {
+        @media (max-width: 649.98px) {
+            width: 180px;
+            height: 180px;
+        }
+
+        @media (max-width: 479.98px) {
             align-self: center;
         }
     }
@@ -43,60 +50,23 @@
     &__list {
         display: flex;
         flex-direction: column;
-        gap: toRem(10);
+        gap: 10px;
     }
     
     &__item {
         display: flex;
         align-items: center;
-        gap: toRem(10);
+        gap: 10px;
     }
 
     &__icon {
         color: $clGreen;
-        font-size: toRem(20);
+        font-size: 20px;
     }
     
     &__contact {
         color: #0071a1;
-        font-size: toRem(16);
+        font-size: 16px;
         font-weight: 600;
-    }
-
-    &__socials {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: toRem(30);
-        flex: 0 1 toRem(250);
-
-        @media (max-width: toRem(767.98)) {
-            flex: 0 0 100%;
-        }
-    }
-
-    &__link {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: toRem(25);
-        height: toRem(25);
-        flex: 0 0 toRem(25);
-        overflow: hidden;
-        transition: all 0.3s ease-in-out;
-
-        @media (any-hover: hover) {
-            &:hover {
-                transform: scale(1.2);
-            }
-        }
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center;
-            aspect-ratio: 1 / 1;
-        }
     }
 }

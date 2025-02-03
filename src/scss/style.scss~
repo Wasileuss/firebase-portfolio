@@ -1,8 +1,5 @@
 @use "sass:math";
 @use "index";
-@use "functions" as *;
-@use "variables" as *;
-
 
 //@import "_reset.scss";
 //@import "_variables.scss";

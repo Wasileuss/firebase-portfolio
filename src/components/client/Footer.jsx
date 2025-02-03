@@ -1,34 +1,42 @@
-import { Link } from 'react-router-dom';
-import linkedin from '../../assets/icons/linkedin.svg';
-import github from '../../assets/icons/github.svg';
-import facebook from '../../assets/icons/facebook.svg';
-import instagram from '../../assets/icons/instagram.svg';
+import useFetchCollection from "../../hooks/useFetchCollection.js"
+import { Link } from 'react-router-dom'
 
 function Footer() {
-    const year = new Date().getFullYear();
+    const { data: socialData } = useFetchCollection("social")
+    const year = new Date().getFullYear()
+
     return(
         <footer className='footer'>
             <div className='footer__container'>
-                <div className='sidebar__socials'>
-                    <Link className='sidebar__link' to="https://www.facebook.com/wasyl.bezkorowainyi" target="_blank" rel="noreferrer">
-                        <img src={facebook} alt="Facebook logo" />
-                    </Link>
-                    <Link className='sidebar__link' to="https://www.linkedin.com/in/vasyl-bezkorovainyi-ukraine/" target="_blank" rel="noreferrer">
-                        <img src={linkedin} alt="Linkedin logo" />
-                    </Link>
-                    <Link className='sidebar__link' to="https://www.instagram.com/wasyl.lviv/" target="_blank" rel="noreferrer">
-                        <img src={instagram} alt="Instagram logo" />
-                    </Link>
-                    <Link className='sidebar__link' to="https://github.com/Wasileuss/" target="_blank" rel="noreferrer">
-                        <img src={github} alt="Github logo" />
-                    </Link>
+                <div className='footer__socials'>
+                    {socialData.sort((a, b) => a.num - b.num).map((item) => (
+                        <div className='footer__item' key={item.id}>
+                            <Link
+                                className='footer__link'
+                                to={item.link}
+                                target="_blank"
+                                rel="norefferer noopener">
+                                {item.images?.map((img, index) => img &&
+                                    <img
+                                        rel="preload"
+                                        loading="eager"
+                                        className='sidebar__icon'
+                                        key={index + 1} src={img}
+                                        alt={`img-${index + 1}`}
+                                        width="20px"
+                                        height="20px"
+                                    />
+                                )}
+                            </Link>
+                        </div>
+                    ))}
                 </div>
                 <div className='footer__copyright'>
                     <p>Copyright © {year} All rights reserved</p>
                 </div>
             </div>
         </footer>
-    );
+    )
 }
 
-export default Footer;
+export default Footer

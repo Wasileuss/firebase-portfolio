@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 const ErrorPage = () => {
     return (
@@ -12,7 +12,7 @@ const ErrorPage = () => {
             </div>
             <Link to="/" className="error-page__link">Back to homepage</Link>
         </div>
-    );
+    )
 }
 
 export default ErrorPage

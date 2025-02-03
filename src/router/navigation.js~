@@ -16,7 +16,7 @@ export const navigation = [
         link: '/admin'
     },
     {
-        pageName: 'Add-Images',
-        link: '/add-images'
+        pageName: 'Test',
+        link: '/test'
     }
 ]

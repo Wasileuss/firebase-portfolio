@@ -1,40 +1,21 @@
-import { useEffect, useState } from "react";
-import { db } from "../../firebaseConfig.js";
-import { collection, onSnapshot } from "firebase/firestore";
+import useFetchCollection from "../../hooks/useFetchCollection.js"
 
 function ProjectsNew() {
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        const unsubscribe = onSnapshot(collection(db, "courses"), (snapshot) => {
-            const updatedData = snapshot.docs.map((doc) => ({
-                ...doc.data(),
-                id: doc.id,
-            }));
-            setData(updatedData);
-        });
-
-        return () => {
-            unsubscribe();
-        };
-    }, []);
+    const { data: coursesData } = useFetchCollection("courses")
 
     return (
         <div className="courses">
-            <h1>Courses</h1>
-            {data.map((item) => (
+            <h1 className="courses__title title">Courses</h1>
+            {coursesData.sort((a, b) => a.num - b.num).map((item) => (
                 <div key={item.id}>
-                    <h3>{item.titleVal}</h3>
-                    <a href={item.linkVal} target="_blank" rel="noopener noreferrer">
-                        {item.linkVal}
-                    </a>
-                    <p>{item.descVal}</p>
-                    <img src={item.imgUrl} alt={item.titleVal} width="100" />
-                    <p>Added on: {item.timestamp && new Date(item.timestamp.seconds * 1000).toLocaleString()}</p>
+                    <h3>{item.desc}</h3>
+                    <h2>{item.title}</h2>
+                    <p>{item.period}</p>
+                    <a href={item.link} target="_blank" rel="noopener noreferrer">{item.content}</a>
                 </div>
             ))}
         </div>
-    );
+    )
 }
 
-export default ProjectsNew;
+export default ProjectsNew

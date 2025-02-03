@@ -1,40 +1,41 @@
-import { useEffect, useState } from "react";
-import { db } from "../../firebaseConfig.js";
-import { collection, onSnapshot } from "firebase/firestore";
+import useFetchCollection from "../../hooks/useFetchCollection.js"
+import Loading from "./Loading.jsx"
 
 function Projects() {
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        const unsubscribe = onSnapshot(collection(db, "projects"), (snapshot) => {
-            const updatedData = snapshot.docs.map((doc) => ({
-                ...doc.data(),
-                id: doc.id,
-            }));
-            setData(updatedData);
-        });
-
-        return () => {
-            unsubscribe();
-        };
-    }, []);
+  const { data: data, loading: loading } = useFetchCollection("projects")
 
     return (
         <div className="projects">
-            <h1>Projects</h1>
-            {data.map((item) => (
-                <div key={item.id}>
-                    <h3>{item.titleVal}</h3>
-                    <a href={item.linkVal} target="_blank" rel="noopener noreferrer">
-                        {item.linkVal}
-                    </a>
-                    <p>{item.descVal}</p>
-                    <img src={item.imgUrl} alt={item.titleVal} width="100" />
-                    <p>Added on: {item.timestamp && new Date(item.timestamp.seconds * 1000).toLocaleString()}</p>
-                </div>
-            ))}
+            <h1 className="projects__title title">Projects</h1>
+            {loading ? (
+                <Loading />
+            ) : (
+                data.sort((a, b) => b.num - a.num).map((item) => (
+                    <div key={item.id}>
+                        <p>No.&nbsp;{item.num}</p>
+                        <h3>
+                            <a href={item.link} target="_blank" rel="noopener noreferrer">
+                                {item.title}
+                            </a>
+                        </h3>
+                        <p>{item.desc}</p>
+                        <div className="projects__images">
+                            {item.images?.map((img, index) => img &&
+                                <img
+                                    key={index}
+                                    src={img}
+                                    alt={`screenshot-${index + 1}-${item.title}`}
+                                    height="100px"
+                                />
+                            )}
+                        </div>
+                        <p>{item.content}</p>
+                        <p>{item.period}</p>
+                    </div>
+                ))
+            )}
         </div>
-    );
+    )
 }
 
-export default Projects;
+export default Projects

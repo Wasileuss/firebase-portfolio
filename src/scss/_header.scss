@@ -1,123 +1,45 @@
 .header {
     position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: toRem(10);
-    border-bottom: toRem(3) solid #0071a1;
+    width: 100%;
+    border-bottom: 3px solid #0071a1;
     z-index: 5;
 
     &__container {
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 100%;
+        padding: 10px;
     }
 
     &__logo {
         position: relative;
-        max-width: toRem(80);
-        width: 100%;
+        width: 70px;
+        height: auto;
         aspect-ratio: 140 / 120;
         z-index: 5;
-    }
 
-    &__hello {
-        font-weight: 700;
-        color: #0071a1;
-
-        @media (max-width: toRem(767.98)) {
-            display: none;
+        svg {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
         }
-    }
 
-    &__content {
-        color: #ffffff;
-        @include adaptiveValue('font-size', 38, 20, 0, $containerWidth, 468);
-        line-height: 1.25;
-        text-transform: uppercase;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        column-gap: toRem(20);
-
-        @media (max-width: toRem(479.98)) {
-            display: none;
+        @media (max-width: 767.98px) {
+            width: 50px;
         }
-    }
 
-    &__animation {
-        justify-items: center;
-        height: toRem(48);
-        overflow: hidden;
-    }
-
-    &__animation > div > div {
-        padding: toRem(2) toRem(15);
-        height: toRem(48);
-        width: 100%;
-        margin-bottom: toRem(4);
-        display: inline-block;
-    }
-
-    &__animation div:first-child {
-        animation: text-animation 12s infinite;
-    }
-    
-    &__name div {
-        background-color: #20a7d8;
-    }
-    
-    &__technology div {
-        background-color: #d06b00;
-    }
-    
-    &__position div {
-        background-color: #00946f;
     }
 }
 
-@keyframes text-animation {
-    0% {
-        margin-top: 0;
-    }
-    10% {
-        margin-top: 0;
-    }
-    20% {
-        margin-top: toRem(-48);
-    }
-    30% {
-        margin-top: toRem(-48);
-    }
-    40% {
-        margin-top: toRem(-96);
-    }
-    60% {
-        margin-top: toRem(-96);
-    }
-    70% {
-        margin-top: toRem(-48);
-    }
-    80% {
-        margin-top: toRem(-48);
-    }
-    90% {
-        margin-top: 0;
-    }
-    100% {
-        margin-top: 0;
-    }
-}
-
-//Burger Icon
 .icon-menu {
 	display: none;
-	@media (max-width: toEm(767.98)) {
+	@media (max-width: 767.98px) {
 		display: block;
 		position: relative;
-		width: toRem(30);
-		height: toRem(18);
+		width: 30px;
+		height: 18px;
 		z-index: 5;
 		@media (any-hover: none) {
 			cursor: default;
@@ -130,7 +52,7 @@
 			right: 0;
 			position: absolute;
 			width: 100%;
-			height: toRem(2);
+			height: 2px;
 			background-color: #000;
 		}
 		&::before {
@@ -140,18 +62,18 @@
 			bottom: 0;
 		}
 		span {
-			top: calc(50% - toRem(1));
+			top: calc(50% - 1px);
 		}
 		&.menu-open  {
 			span {
 				width: 0;
 			}
 			&::before {
-				top: calc(50% - toRem(1));
+				top: calc(50% - 1px);
 				transform: rotate(-45deg);
 			}
 			&::after {
-				bottom: calc(50% - toRem(1));
+				bottom: calc(50% - 1px);
 				transform: rotate(45deg);
 			}
 		}

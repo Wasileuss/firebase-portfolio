@@ -1,0 +1,87 @@
+@use "functions" as *;
+@use "variables" as *;
+
+.admin {
+  flex-grow: 1;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 50px;
+  }
+
+  &__select {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #54d0ff;
+    border: 1px solid #c6c6c6;
+    border-radius: 5px;
+    padding: 3px 25px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+
+    &:not(:last-child) {
+      border-bottom: 3px solid #c6c6c6;
+    }
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  &__images {
+    display: flex;
+    gap: 10px;
+    padding: 0 20px;
+  }
+
+  &__image-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.primary {
+  background-color: #3fff92;
+}
+
+.secondary {
+  background-color: #ffb357;
+}
+
+.delete {
+  background-color: #ff5f5f;
+}
+
+.accordion-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.accordion-content.expanded {
+  max-height: 500px; /* Достатньо велике значення */
+  padding: 10px 0;
+}

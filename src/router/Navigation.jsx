@@ -1,36 +1,32 @@
-import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { navigation } from './navigation.js';
-import 'animate.css';
-import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
+import { navigation } from './navigation.js'
+import 'animate.css'
+import PropTypes from 'prop-types'
 
 const Navigation = ({ isMenuOpen, closeMenu }) => {
-    const [shouldAnimate, setShouldAnimate] = useState(true);
+    const [shouldAnimate, setShouldAnimate] = useState(true)
 
     const handleNavLinkClick = () => {
-        closeMenu();
-    };
+        closeMenu()
+    }
 
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth <= 767.98) {
-                setShouldAnimate(false);
+                setShouldAnimate(false)
             } else {
-                setShouldAnimate(true);
+                setShouldAnimate(true)
             }
-        };
+        }
 
-        // Add event listener for window resize
-        window.addEventListener('resize', handleResize);
+        window.addEventListener('resize', handleResize)
+        handleResize()
 
-        // Initial check on component mount
-        handleResize();
-
-        // Remove event listener on component unmount
         return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
 
     return (
         <div className={`nav ${isMenuOpen ? 'active' : ''}`}>
@@ -49,12 +45,12 @@ const Navigation = ({ isMenuOpen, closeMenu }) => {
                 ))}
             </ul>
         </div>
-    );
-};
+    )
+}
 
 Navigation.propTypes = {
     isMenuOpen: PropTypes.bool.isRequired,
     closeMenu: PropTypes.func.isRequired,
-};
+}
 
-export default Navigation;
+export default Navigation

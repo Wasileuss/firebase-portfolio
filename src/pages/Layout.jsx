@@ -1,32 +1,32 @@
-import { useState, useEffect } from 'react';
-import { Outlet } from "react-router-dom";
-import Header from "../components/client/Header.jsx";
-import Footer from "../components/client/Footer.jsx";
-import Navigation from "../router/Navigation.jsx";
+import { useState, useEffect, useCallback } from "react"
+import { Outlet } from "react-router-dom"
+import Header from "../components/client/Header"
+import Footer from "../components/client/Footer"
+import Navigation from "../router/Navigation.jsx"
 
 const Layout = () => {
-    const [isMenuOpen, setMenuOpen] = useState(false);
+    const [isMenuOpen, setMenuOpen] = useState(false)
 
-    const handleMenuClick = () => {
-        setMenuOpen(!isMenuOpen);
-    };
+    const handleMenuClick = useCallback(() => {
+        setMenuOpen((prev) => !prev)
+    }, [])
 
-    const closeMenu = () => {
-        setMenuOpen(false);
-    };
+    const closeMenu = useCallback(() => {
+        setMenuOpen(false)
+    }, [])
 
     useEffect(() => {
-        if (isMenuOpen) {
-            document.body.classList.add('lock');
-        } else {
-            document.body.classList.remove('lock');
+        document.body.classList.toggle("lock", isMenuOpen)
+
+        return () => {
+            document.body.classList.remove("lock")
         }
-    }, [isMenuOpen]);
+    }, [isMenuOpen])
 
     return (
         <div className="wrapper">
             <Header isMenuOpen={isMenuOpen} handleMenuClick={handleMenuClick} />
-            <main className="page">
+            <main className="page" role="main">
                 <div className="page__container">
                     <Outlet />
                     <Navigation isMenuOpen={isMenuOpen} closeMenu={closeMenu} />
@@ -35,6 +35,6 @@ const Layout = () => {
             <Footer />
         </div>
     )
-};
+}
 
-export default Layout;
+export default Layout

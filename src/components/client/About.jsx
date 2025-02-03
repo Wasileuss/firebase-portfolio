@@ -1,21 +1,26 @@
-import Sidebar from "./Sidebar.jsx";
-import AnimatedWords from "../ui/AnimatedWords.jsx";
+import Sidebar from "./Sidebar.jsx"
+import AnimatedWords from "../ui/AnimatedWords.jsx"
+import useFetchCollection from "../../hooks/useFetchCollection.js"
 
 const Home = () => {
+  const { data: infoData } = useFetchCollection("info")
     return (
         <div className='about'>
             <Sidebar />
             <div className ="about__content">
                 <AnimatedWords />
-                <p className ="about__description">
-                    Aspiring Frontend Developer with a passion for creating
-                    user-friendly and visually appealing web interfaces. Proficient in
-                    HTML, CSS, and JavaScript, with experience in React. Strong
-                    problem-solving and debugging skills.
-                </p>
+                {infoData.map((item) => (
+                    <div className="about__description" key={item.id}>
+                        <h2>{item.title}</h2>
+                        <p>{item.desc}</p>
+                        <p>{item.num}</p>
+                        <p>{item.content}</p>
+                        <p>{item.period}</p>
+                    </div>
+                ))}
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Home;
+export default Home
