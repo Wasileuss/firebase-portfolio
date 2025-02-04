@@ -1,10 +1,12 @@
-import { Navigate, Outlet } from "react-router-dom"
-import { useAuth } from "../components/admin/Auth.jsx"
+import { useAuth } from '../components/admin/Auth.jsx'
+import { Navigate, Outlet } from 'react-router-dom'
 
 const ProtectedRoute = () => {
-  const { user } = useAuth()
+  const { userLoggedIn, loading } = useAuth()
 
-  return user ? <Outlet /> : <Navigate to="/login" replace />;
+  if (loading) return <div>Loading...</div>
+
+  return userLoggedIn ? <Outlet /> : <Navigate to="/login" replace />
 }
 
 export default ProtectedRoute

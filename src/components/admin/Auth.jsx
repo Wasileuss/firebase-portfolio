@@ -1,46 +1,60 @@
-import { createContext, useContext, useEffect, useState } from "react"
-import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth"
-import { auth, provider } from "../../firebaseConfig.js"
+import React, { useContext, useEffect, useState } from 'react'
+import { auth } from '../../firebaseConfig.js'
+import { GoogleAuthProvider, onAuthStateChanged } from 'firebase/auth'
 
-const AuthContext = createContext(null)
+const AuthContext = React.createContext(null)
 
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(true) // Додаємо стан завантаження
+export function useAuth() {
+  return useContext(AuthContext)
+}
+
+export function AuthProvider({ children }) {
+  const [currentUser, setCurrentUser] = useState(null)
+  const [userLoggedIn, setUserLoggedIn] = useState(false)
+  const [isEmailUser, setIsEmailUser] = useState(false)
+  const [isGoogleUser, setIsGoogleUser] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser)
-      setLoading(false) // Завантаження завершено
-    })
-
-    return () => unsubscribe()
+    return onAuthStateChanged(auth, initializeUser)
   }, [])
 
-  const login = async () => {
-    try {
-      await signInWithPopup(auth, provider)
-    } catch (error) {
-      console.error("Помилка входу:", error)
+  async function initializeUser(user) {
+    if (user) {
+
+      setCurrentUser({ ...user })
+
+      const isEmail = user.providerData.some(
+        (provider) => provider.providerId === "password"
+      )
+      setIsEmailUser(isEmail)
+
+      const isGoogle = user.providerData.some(
+        (provider) => provider.providerId === GoogleAuthProvider.PROVIDER_ID
+      )
+      setIsGoogleUser(isGoogle)
+
+      setUserLoggedIn(true)
+    } else {
+      setCurrentUser(null)
+      setUserLoggedIn(false)
     }
+
+    setLoading(false)
   }
 
-  const logout = () => {
-    signOut(auth)
-      .then(() => {
-        setUser(null)
-        window.location.href = "/"
-      })
-      .catch((error) => console.error("Помилка виходу:", error))
+  const value = {
+    userLoggedIn,
+    isEmailUser,
+    isGoogleUser,
+    currentUser,
+    setCurrentUser,
+    loading
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
-      {children}
+    <AuthContext.Provider value={value}>
+      {!loading && children}
     </AuthContext.Provider>
   )
-}
-
-export const useAuth = () => {
-  return useContext(AuthContext)
 }
