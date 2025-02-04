@@ -7,7 +7,6 @@ import Projects from "../components/client/Projects";
 import Courses from "../components/client/Courses";
 import { AuthProvider } from '../components/admin/Auth.jsx';
 import Login from "../components/admin/Login.jsx";
-// import Register from '../components/admin/Register.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx'
 
 const Router = createBrowserRouter([
@@ -42,14 +41,6 @@ const Router = createBrowserRouter([
           </AuthProvider>
         )
     },
-    // {
-    //     path: "/register",
-    //     element: (
-    //       <AuthProvider>
-    //           <Register />
-    //       </AuthProvider>
-    //     )
-    // },
     { path: "*", element: <ErrorPage /> }
 ]);
 
