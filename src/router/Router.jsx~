@@ -8,7 +8,6 @@ import Courses from "../components/client/Courses";
 import { AuthProvider } from '../components/admin/Auth.jsx';
 import Login from "../components/admin/Login.jsx";
 import ProtectedRoute from './ProtectedRoute.jsx'
-import Contact from '../components/client/Contact.jsx'
 
 const Router = createBrowserRouter([
     {
@@ -23,7 +22,6 @@ const Router = createBrowserRouter([
             { index: true, element: <Home /> },
             { path: "projects", element: <Projects /> },
             { path: "courses", element: <Courses /> },
-            { path: "contact", element: <Contact /> },
             {
                 path: "admin",
                 element: (

@@ -12,7 +12,7 @@ export const navigation = [
         link: '/courses'
     },
     {
-        pageName: 'Admin',
-        link: '/admin'
-    }
+        pageName: 'Contact',
+        link: '/contact'
+    },
 ]

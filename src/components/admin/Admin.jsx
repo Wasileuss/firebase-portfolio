@@ -8,8 +8,6 @@ import useFetchCollection from "../../hooks/useFetchCollection.js"
 import Select from "../ui/Select.jsx"
 import Input from "../ui/Input.jsx"
 import Button from "../ui/Button.jsx"
-import { doSignOut } from '../../firebaseAuth.js'
-import { useNavigate } from 'react-router-dom'
 
 function Admin() {
     const [selectedCategory, setSelectedCategory] = useState("projects")
@@ -26,7 +24,6 @@ function Admin() {
     const fileInputRefs = [useRef(null), useRef(null), useRef(null)]
     const [showModal, setShowModal] = useState(false)
     const [expandedItem, setExpandedItem] = useState(null)
-    const navigate = useNavigate()
 
     useEffect(() => {
         document.body.classList.toggle("lock", showModal)
@@ -183,13 +180,7 @@ function Admin() {
           <h1 className="admin__title title">Admin Panel</h1>
           <div className="admin__header">
               <Select selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
-              <Button className="input-border" variant="primary" type="button" onClick={() => setShowModal(true)}>Add
-                  New</Button>
-              <Button className="input-border" variant="delete" type="button" onClick={() => {
-                  doSignOut().then(() => {
-                      navigate("/")
-                  })
-              }}>Logout</Button>
+              <Button className="input-border" variant="primary" type="button" onClick={() => setShowModal(true)}>Add New</Button>
           </div>
           <Modal isOpen={showModal} editItem={editItem} onClose={handleCloseModal}>
               <Input className="input-border" type="text" onChange={(e) => setTitle(e.target.value)} value={title}
