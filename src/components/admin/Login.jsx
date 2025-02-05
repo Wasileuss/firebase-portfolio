@@ -58,6 +58,8 @@ const Login = () => {
             </div>
           </div>
           <form
+            id="login-form"
+            name="login-form"
             onSubmit={onSubmit}
             className="space-y-5"
           >
@@ -98,8 +100,7 @@ const Login = () => {
               {isSigningIn ? 'Signing In...' : 'Sign In'}
             </button>
           </form>
-          <div style={{ height: '50px' }}></div>
-          <div>
+          <div style={{ marginTop: '50px' }}>
             <p>wasyl.lwiw@gmail.com</p>
             <p>mlp147</p>
           </div>

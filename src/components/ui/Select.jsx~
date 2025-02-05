@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import { capitalize } from "../../utils/capitalize.js"
+import { capitalize } from "../admin/Admin.jsx"
 
 const Select = ({ selectedCategory, setSelectedCategory, className, id, name, options }) => {
   return (
