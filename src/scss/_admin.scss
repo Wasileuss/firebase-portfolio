@@ -1,6 +1,3 @@
-@use "functions" as *;
-@use "variables" as *;
-
 .admin {
   flex-grow: 1;
 
@@ -82,6 +79,6 @@
 }
 
 .accordion-content.expanded {
-  max-height: 500px; /* Достатньо велике значення */
+  max-height: 80vh;
   padding: 10px 0;
 }

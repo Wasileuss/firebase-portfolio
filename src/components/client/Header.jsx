@@ -1,12 +1,16 @@
 import PropTypes from "prop-types"
-import { Logo } from "../ui/Logo.jsx"
+// import { Logo } from "../ui/Logo.jsx"
 
 function Header({ isMenuOpen, handleMenuClick }) {
     return(
         <header className='header'>
             <div className="header__container">
-                <div className='header__logo'>
+                {/* <div className='header__logo'>
                     <Logo alt="logo" />
+                </div> */}
+                <div className="">
+                    <h1 className="">Frontend Developer</h1>
+                    <h2 className="">Bringing Ideas to Life Through Code</h2>
                 </div>
                 <button
                   type="button"

@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
       setCurrentUser({ ...user })
 
       const isEmail = user.providerData.some(
-        (provider) => provider.providerId === 'password',
+        (provider) => provider.providerId === "password"
       )
       setIsEmailUser(isEmail)
 
@@ -42,7 +42,7 @@ export function AuthProvider({ children }) {
     isEmailUser,
     currentUser,
     setCurrentUser,
-    loading,
+    loading
   }
 
   return (
