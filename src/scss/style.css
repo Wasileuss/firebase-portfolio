@@ -500,9 +500,15 @@ textarea {
   border: 1px solid #c6c6c6;
   border-radius: 10px;
 }
-@media (max-width: 649.98px) {
+@media (max-width: 919.98px) {
   .sidebar {
     flex-direction: row;
+    width: 100%;
+  }
+}
+@media (max-width: 479.98px) {
+  .sidebar {
+    flex-direction: column;
     align-items: center;
     gap: 20px;
     width: 100%;
@@ -570,6 +576,11 @@ textarea {
   display: flex;
   gap: 30px;
   flex-grow: 1;
+}
+@media (max-width: 919.98px) {
+  .contact {
+    flex-direction: column;
+  }
 }
 
 .admin {
