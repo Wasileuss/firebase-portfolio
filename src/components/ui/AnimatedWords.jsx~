@@ -65,7 +65,7 @@ const AnimatedWords = () => {
                   opacity: currentWordIndex === wordIndex ? 1 : 0,
                 }}
               >
-            <span style={{ position: 'absolute', display: 'inline-block', left: '-35px' }}>&lt;</span>
+            <span style={{ position: 'absolute', display: 'inline-block', left: '-30px' }}>&lt;</span>
                 {word.text.split('').map((letter, letterIndex) => (
                   <span
                     key={letterIndex}
