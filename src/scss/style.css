@@ -175,6 +175,10 @@ textarea {
   }
 }
 
+.title-position {
+  color: #2c3e50;
+}
+
 .word {
   position: absolute;
   top: 0;
@@ -574,13 +578,121 @@ textarea {
 
 .contact {
   display: flex;
-  gap: 30px;
   flex-grow: 1;
+  width: 100%;
+  margin: 0 auto;
+  gap: 1.25rem;
 }
-@media (max-width: 919.98px) {
+@media (min-width: 80em) {
+  .contact {
+    padding-top: 3.125rem;
+  }
+}
+@media (min-width: 48em) and (max-width: 80em) {
+  @supports (padding-top: clamp( 1.875rem , 0.0000000625rem  +  3.90625vw , 3.125rem )) {
+    .contact {
+      padding-top: clamp( 1.875rem , 0.0000000625rem  +  3.90625vw , 3.125rem );
+    }
+  }
+  @supports not (padding-top: clamp( 1.875rem , 0.0000000625rem  +  3.90625vw , 3.125rem )) {
+    .contact {
+      padding-top: calc(1.875rem + 1.25 * (100vw - 48rem) / 32);
+    }
+  }
+}
+@media (max-width: 48em) {
+  .contact {
+    padding-top: 1.875rem;
+  }
+}
+@media (min-width: 80em) {
+  .contact {
+    padding-bottom: 3.125rem;
+  }
+}
+@media (min-width: 48em) and (max-width: 80em) {
+  @supports (padding-bottom: clamp( 1.875rem , 0.0000000625rem  +  3.90625vw , 3.125rem )) {
+    .contact {
+      padding-bottom: clamp( 1.875rem , 0.0000000625rem  +  3.90625vw , 3.125rem );
+    }
+  }
+  @supports not (padding-bottom: clamp( 1.875rem , 0.0000000625rem  +  3.90625vw , 3.125rem )) {
+    .contact {
+      padding-bottom: calc(1.875rem + 1.25 * (100vw - 48rem) / 32);
+    }
+  }
+}
+@media (max-width: 48em) {
+  .contact {
+    padding-bottom: 1.875rem;
+  }
+}
+@media (max-width: 649.98px) {
   .contact {
     flex-direction: column;
   }
+}
+.contact__content {
+  width: 100%;
+}
+.contact__header {
+  text-align: center;
+}
+.contact__description {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  text-align: center;
+  color: #00503c;
+}
+.contact__form {
+  width: 100%;
+  display: grid;
+  gap: 1.25rem;
+}
+.contact__block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3125rem;
+}
+.contact__label {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.contact__input {
+  padding: 0.625rem 0.9375rem;
+  border: 0.0625rem solid #0071a1;
+  border-radius: 0.4375rem;
+}
+.contact__error {
+  color: #ff6262;
+  font-size: 0.875rem;
+}
+.contact__button {
+  align-self: center;
+  font-size: 1.25rem;
+  background-color: rgba(0, 113, 161, 0.5);
+  padding: 0.9375rem 1.875rem;
+  border-radius: 0.3125rem;
+  transition: all 0.3s ease-in-out;
+}
+@media (any-hover: hover) {
+  .contact__button:hover {
+    color: #f7f7f7;
+    background-color: #0071a1;
+  }
+}
+.contact__message {
+  padding: 0.625rem 0.9375rem;
+  color: #ffffff;
+  border-radius: 0.4375rem;
+  width: 100%;
+  text-align: center;
+}
+.contact__message.success {
+  background-color: #008000;
+}
+.contact__message.error {
+  background-color: #ff0000;
 }
 
 .admin {
@@ -764,8 +876,9 @@ body.lock {
 }
 
 [class*=__container] {
-  max-width: 78.125rem;
   margin: 0 auto;
+  width: 100%;
+  max-width: 78.125rem;
   padding-left: 0.9375rem;
   padding-right: 0.9375rem;
 }
