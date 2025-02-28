@@ -33,8 +33,9 @@ body {
 }
 
 [class*="__container"] {
-  max-width: toRem(1250);
   margin: 0 auto;
+  width: 100%;
+  max-width: toRem(1250);
   padding-left: toRem(15);
   padding-right: toRem(15);
 }
