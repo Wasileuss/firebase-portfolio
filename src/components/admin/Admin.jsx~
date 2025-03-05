@@ -20,6 +20,7 @@ import Select from '../ui/Select.jsx'
 import Button from '../ui/Button.jsx'
 import AdminForm from './AdminForm.jsx'
 import AdminItem from './AdminItem.jsx'
+import PropTypes from 'prop-types'
 
 const options = [
   { value: 'projects' },
@@ -277,6 +278,12 @@ function Admin() {
       </ul>
     </div>
   )
+}
+
+Admin.propTypes = {
+  editItem: PropTypes.string,
+  selectedCategory: PropTypes.string,
+  setSelectedCategory: PropTypes.func,
 }
 
 export default Admin

@@ -26,17 +26,7 @@ function AdminForm({
   fileInputRefs,
   handleUpload,
   handleClick,
-  handleCloseModal,
-  showModal,
-  setShowModal,
   editItem,
-  setEditItem,
-  oldImgUrls,
-  setOldImgUrls,
-  expandedItem,
-  toggleAccordion,
-  handleEdit,
-  handleDelete,
 }) {
   return (
     <form className="admin__form" id="admin-form" name="admin-form">
@@ -88,21 +78,21 @@ function AdminForm({
       <Input
         className="input-border"
         type="text"
-        onChange={(e) => setPeriod(e.target.value)}
+        onChange={(e) => setInfo1(e.target.value)}
         value={info1}
         placeholder="Info 1"
       />
       <Input
         className="input-border"
         type="text"
-        onChange={(e) => setPeriod(e.target.value)}
+        onChange={(e) => setInfo2(e.target.value)}
         value={info2}
         placeholder="Info 2"
       />
       <Input
         className="input-border"
         type="text"
-        onChange={(e) => setPeriod(e.target.value)}
+        onChange={(e) => setInfo3(e.target.value)}
         value={info3}
         placeholder="Info 3"
       />
