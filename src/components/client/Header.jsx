@@ -7,7 +7,9 @@ function Header({ isMenuOpen, handleMenuClick }) {
       <div className="header__container">
         <NavLink to="/" className="header__logo">
           <h1 className="header__title">Vasyl Bezkorovainyi</h1>
-          <h2 className="header__subtitle">Bringing Ideas to Life Through Code</h2>
+          <h2 className="header__subtitle">
+            Bringing Ideas to Life Through Code
+          </h2>
           {/*<h1 className="header__title">&lt;Frontend Developer /&gt;</h1>*/}
           {/*<h2 className="header__subtitle">&#123;&#91; Bringing Ideas to Life Through Code &#93;&#125;</h2>*/}
         </NavLink>

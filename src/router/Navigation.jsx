@@ -8,77 +8,90 @@ import { doSignOut } from '../firebaseAuth.js'
 import Button from '../components/ui/Button.jsx'
 
 const Navigation = ({ isMenuOpen, closeMenu }) => {
-    const { userLoggedIn } = useAuth()
-    const [shouldAnimate, setShouldAnimate] = useState(true)
+  const { userLoggedIn } = useAuth()
+  const [shouldAnimate, setShouldAnimate] = useState(true)
 
-    const handleNavLinkClick = () => {
-        closeMenu()
+  const handleNavLinkClick = () => {
+    closeMenu()
+  }
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 767.98) {
+        setShouldAnimate(false)
+      } else {
+        setShouldAnimate(true)
+      }
     }
 
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth <= 767.98) {
-                setShouldAnimate(false)
-            } else {
-                setShouldAnimate(true)
-            }
-        }
+    window.addEventListener('resize', handleResize)
+    handleResize()
 
-        window.addEventListener('resize', handleResize)
-        handleResize()
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
-        return () => {
-            window.removeEventListener('resize', handleResize)
-        }
-    }, [])
-
-    return (
-        <div className={`nav ${isMenuOpen ? 'active' : ''}`}>
-            <ul className='nav__list'>
-                {navigation.map((el) => (
-                    <li
-                        key={Math.random() * 100}
-                        className={`nav__item ${
-                            shouldAnimate ? 'animate__animated animate__fadeInRight' : ''
-                        }`}
-                    >
-                        <NavLink to={el.link} className="nav__link" onClick={handleNavLinkClick}>
-                            {el.pageName}
-                        </NavLink>
-                    </li>
-                ))}
-                {userLoggedIn && (
-                  <>
-                      <li
-                        className={`nav__item ${
-                          shouldAnimate ? 'animate__animated animate__fadeInRight' : ''
-                        }`}
-                      >
-                          <NavLink to="/admin" className="nav__link" onClick={handleNavLinkClick}>
-                              Admin
-                          </NavLink>
-                      </li>
-                      <li
-                        className={`nav__item ${
-                          shouldAnimate ? 'animate__animated animate__fadeInRight' : ''
-                        }`}
-                      >
-                          <NavLink to="/" onClick={handleNavLinkClick}>
-                              <Button className="input-border" variant="delete" type="button" onClick={doSignOut}>Log
-                                  out</Button>
-                          </NavLink>
-
-                      </li>
-                  </>
-                )}
-            </ul>
-        </div>
-    )
+  return (
+    <div className={`nav ${isMenuOpen ? 'active' : ''}`}>
+      <ul className="nav__list">
+        {navigation.map((el) => (
+          <li
+            key={Math.random() * 100}
+            className={`nav__item ${
+              shouldAnimate ? 'animate__animated animate__fadeInRight' : ''
+            }`}
+          >
+            <NavLink
+              to={el.link}
+              className="nav__link"
+              onClick={handleNavLinkClick}
+            >
+              {el.pageName}
+            </NavLink>
+          </li>
+        ))}
+        {userLoggedIn && (
+          <>
+            <li
+              className={`nav__item ${
+                shouldAnimate ? 'animate__animated animate__fadeInRight' : ''
+              }`}
+            >
+              <NavLink
+                to="/admin"
+                className="nav__link"
+                onClick={handleNavLinkClick}
+              >
+                Admin
+              </NavLink>
+            </li>
+            <li
+              className={`nav__item ${
+                shouldAnimate ? 'animate__animated animate__fadeInRight' : ''
+              }`}
+            >
+              <NavLink to="/" onClick={handleNavLinkClick}>
+                <Button
+                  className="input-border"
+                  variant="delete"
+                  type="button"
+                  onClick={doSignOut}
+                >
+                  Log out
+                </Button>
+              </NavLink>
+            </li>
+          </>
+        )}
+      </ul>
+    </div>
+  )
 }
 
 Navigation.propTypes = {
-    isMenuOpen: PropTypes.bool.isRequired,
-    closeMenu: PropTypes.func.isRequired,
+  isMenuOpen: PropTypes.bool.isRequired,
+  closeMenu: PropTypes.func.isRequired,
 }
 
 export default Navigation

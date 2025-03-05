@@ -34,7 +34,6 @@
     @media (max-width: 479.98px) {
       font-size: 22px;
     }
-
   }
 
   &__subtitle {
@@ -63,7 +62,7 @@
     span,
     &::before,
     &::after {
-      content: "";
+      content: '';
       transition: all 0.3s ease 0s;
       right: 0;
       position: absolute;

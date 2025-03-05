@@ -281,8 +281,8 @@ textarea {
 
 .modal-button {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 20px;
+  right: 20px;
 }
 
 .header {
@@ -407,7 +407,7 @@ textarea {
 .nav__link {
   font-weight: 900;
   text-transform: uppercase;
-  color: #00664A;
+  color: #00664a;
 }
 @media (min-width: 80em) {
   .nav__link {
@@ -432,7 +432,7 @@ textarea {
   }
 }
 .nav__link.active {
-  color: #3643D8;
+  color: #3643d8;
 }
 @media (max-width: 767.98px) {
   .nav {
@@ -729,6 +729,13 @@ textarea {
   font-weight: 700;
   cursor: pointer;
 }
+.admin__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0;
+}
 .admin__images {
   display: flex;
   gap: 10px;
@@ -743,6 +750,12 @@ textarea {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+.admin__button {
+  justify-content: center;
+  padding: 5px 25px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .primary {

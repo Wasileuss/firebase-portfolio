@@ -1,5 +1,5 @@
-@use "variables" as *;
-@use "functions" as *;
+@use 'variables' as *;
+@use 'functions' as *;
 
 .nav {
   position: relative;
@@ -26,7 +26,7 @@
     font-weight: 900;
     text-transform: uppercase;
     //color: #00c191;
-    color: #00664A;
+    color: #00664a;
 
     & {
       @include adaptiveValue('font-size', 32, 26, 0, $containerWidth, 768);
@@ -34,7 +34,7 @@
 
     &.active {
       //color: #6b77e5
-      color: #3643D8;
+      color: #3643d8;
     }
   }
 
@@ -51,7 +51,7 @@
     margin-left: -15px;
 
     &::before {
-      content: "";
+      content: '';
       position: fixed;
       width: 100%;
       height: 80px;

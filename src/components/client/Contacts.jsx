@@ -3,9 +3,7 @@ const Contacts = () => {
   // stripHtml('<h1>Hello <strong>World</strong>!!!</h1>');
   // Результат: Hello World!!!
 
-  return(
-    <div className='contacts'>Contacts</div>
-  )
+  return <div className="contacts">Contacts</div>
 }
 
 export default Contacts

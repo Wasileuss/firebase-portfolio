@@ -15,7 +15,9 @@ const EmailForm = () => {
 
   const validationSchema = Yup.object({
     name: Yup.string().required('Enter your name'),
-    email: Yup.string().email('Invalid email address').required('Enter your email'),
+    email: Yup.string()
+      .email('Invalid email address')
+      .required('Enter your email'),
     message: Yup.string().required('Enter your message'),
   })
 
@@ -24,24 +26,27 @@ const EmailForm = () => {
     const templateId = import.meta.env.VITE_APP_TEMPLATE_ID
     const userId = import.meta.env.VITE_APP_USER_ID
 
+    emailjs
+      .send(serviceId, templateId, values, userId)
+      .then(
+        (response) => {
+          console.log('SUCCESS!', response.status, response.text)
+          setStatusMessage('Message sent successfully!')
+          resetForm()
 
-    emailjs.send(serviceId, templateId, values, userId)
-      .then((response) => {
-        console.log('SUCCESS!', response.status, response.text)
-        setStatusMessage('Message sent successfully!')
-        resetForm()
+          setTimeout(() => {
+            setStatusMessage(null)
+          }, 5000)
+        },
+        (error) => {
+          console.log('FAILED...', error)
+          setStatusMessage('Failed to send message. Please try again later.')
 
-        setTimeout(() => {
-          setStatusMessage(null)
-        }, 5000)
-      }, (error) => {
-        console.log('FAILED...', error)
-        setStatusMessage('Failed to send message. Please try again later.')
-
-        setTimeout(() => {
-          setStatusMessage(null)
-        }, 5000)
-      })
+          setTimeout(() => {
+            setStatusMessage(null)
+          }, 5000)
+        },
+      )
       .finally(() => {
         setSubmitting(false)
       })
@@ -57,8 +62,13 @@ const EmailForm = () => {
             <p>Feedback, suggestions and new friends are always welcome.</p>
           </div>
         </div>
-        {statusMessage && <p
-          className={`contact__message ${statusMessage.includes('successfully') ? 'success' : 'error'}`}>{statusMessage}</p>}
+        {statusMessage && (
+          <p
+            className={`contact__message ${statusMessage.includes('successfully') ? 'success' : 'error'}`}
+          >
+            {statusMessage}
+          </p>
+        )}
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -68,20 +78,53 @@ const EmailForm = () => {
             <Form className="contact__form">
               <div className="contact__block">
                 <label htmlFor="name">Name</label>
-                <Field className="contact__input" type="text" id="name" name="name" />
-                <ErrorMessage className="contact__error" name="name" component="div" />
+                <Field
+                  className="contact__input"
+                  type="text"
+                  id="name"
+                  name="name"
+                />
+                <ErrorMessage
+                  className="contact__error"
+                  name="name"
+                  component="div"
+                />
               </div>
               <div className="contact__block">
                 <label htmlFor="email">Email</label>
-                <Field className="contact__input" type="email" id="email" name="email" />
-                <ErrorMessage className="contact__error" name="email" component="div" />
+                <Field
+                  className="contact__input"
+                  type="email"
+                  id="email"
+                  name="email"
+                />
+                <ErrorMessage
+                  className="contact__error"
+                  name="email"
+                  component="div"
+                />
               </div>
               <div className="contact__block">
                 <label htmlFor="message">Message</label>
-                <Field className="contact__input" as="textarea" id="message" name="message" />
-                <ErrorMessage className="contact__error" name="message" component="div" />
+                <Field
+                  className="contact__input"
+                  as="textarea"
+                  id="message"
+                  name="message"
+                />
+                <ErrorMessage
+                  className="contact__error"
+                  name="message"
+                  component="div"
+                />
               </div>
-              <button className="contact__button" type="submit" disabled={isSubmitting}>Send</button>
+              <button
+                className="contact__button"
+                type="submit"
+                disabled={isSubmitting}
+              >
+                Send
+              </button>
             </Form>
           )}
         </Formik>

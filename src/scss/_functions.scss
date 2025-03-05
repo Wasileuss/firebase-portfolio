@@ -1,16 +1,16 @@
-@use "sass:math";
+@use 'sass:math';
 
 @function percent($num1, $num2) {
-	$rez: math.div($num1, $num2) * 100%;
-	@return $rez;
+  $rez: math.div($num1, $num2) * 100%;
+  @return $rez;
 }
 @function toRem($num1, $num2: 16) {
-	$rez: math.div($num1, $num2) + rem;
-	@return $rez;
+  $rez: math.div($num1, $num2) + rem;
+  @return $rez;
 }
 @function toEm($num1, $num2: 16) {
-	$rez: math.div($num1, $num2) + em;
-	@return $rez;
+  $rez: math.div($num1, $num2) + em;
+  @return $rez;
 }
 
 $minWidth: 320;
@@ -19,55 +19,71 @@ $maxWidthContainer: 1250;
 $containerPadding: 30;
 $containerWidth: $maxWidthContainer + $containerPadding;
 
-@mixin adaptiveValue($property, $startSize, $minSize, $keepSize: 0, $widthFrom: $containerWidth, $widthTo: $minWidth) {
-	@if ($startSize==0) {
-		$startSize: 0.000001;
-	}
-	@if ($minSize==0) {
-		$minSize: 0.000001;
-	}
+@mixin adaptiveValue(
+  $property,
+  $startSize,
+  $minSize,
+  $keepSize: 0,
+  $widthFrom: $containerWidth,
+  $widthTo: $minWidth
+) {
+  @if ($startSize==0) {
+    $startSize: 0.000001;
+  }
+  @if ($minSize==0) {
+    $minSize: 0.000001;
+  }
 
-	$addSize: math.div($startSize - $minSize, 16);
+  $addSize: math.div($startSize - $minSize, 16);
 
-	@if ($widthFrom == $containerWidth and $maxWidthContainer == 0) {
-		$widthFrom: $maxWidth;
-	}
+  @if ($widthFrom == $containerWidth and $maxWidthContainer == 0) {
+    $widthFrom: $maxWidth;
+  }
 
-	$widthFromMedia: toEm($widthFrom);
-	$widthToMedia: toEm($widthTo);
+  $widthFromMedia: toEm($widthFrom);
+  $widthToMedia: toEm($widthTo);
 
-	$slope: math.div(($startSize - $minSize), ($widthFrom - $widthTo));
-	$yIntersection: -$widthTo * $slope + $minSize;
-	@if ($yIntersection==0) {
-		$yIntersection: 0.000001;
-	}
-	$flyValue: #{toRem($yIntersection)}" + " #{$slope * 100}vw;
+  $slope: math.div(($startSize - $minSize), ($widthFrom - $widthTo));
+  $yIntersection: -$widthTo * $slope + $minSize;
+  @if ($yIntersection==0) {
+    $yIntersection: 0.000001;
+  }
+  $flyValue: #{toRem($yIntersection)}' + ' #{$slope * 100}vw;
 
-	$propertyValue: #{"clamp(" toRem($minSize) "," $flyValue "," toRem($startSize) ")"};
+  $propertyValue: #{'clamp(' toRem($minSize) ',' $flyValue ',' toRem($startSize)
+    ')'};
 
-	@if ($minSize > $startSize) {
-		$propertyValue: #{"clamp(" toRem($startSize) "," $flyValue "," toRem($minSize) ")"};
-	}
+  @if ($minSize > $startSize) {
+    $propertyValue: #{'clamp('
+      toRem($startSize)
+      ','
+      $flyValue
+      ','
+      toRem($minSize)
+      ')'};
+  }
 
-	@if $keepSize != 1 and $keepSize != 3 {
-		@media (min-width: $widthFromMedia) {
-			#{$property}: toRem($startSize);
-		}
-	}
+  @if $keepSize != 1 and $keepSize != 3 {
+    @media (min-width: $widthFromMedia) {
+      #{$property}: toRem($startSize);
+    }
+  }
 
-	@media (min-width: $widthToMedia) and (max-width: $widthFromMedia) {
+  @media (min-width: $widthToMedia) and (max-width: $widthFromMedia) {
+    @supports (#{$property}: $propertyValue) {
+      #{$property}: $propertyValue;
+    }
 
-		@supports (#{$property}: $propertyValue) {
-			#{$property}: $propertyValue;
-		}
-
-		@supports not (#{$property}: $propertyValue) {
-			#{$property}: calc(#{toRem($minSize)} + #{$addSize} * (100vw - #{toRem($widthTo)}) / #{math.div($widthFrom, 16) - math.div($widthTo, 16)});
-		}
-	}
-	@if $keepSize != 1 and $keepSize != 2 {
-		@media (max-width: $widthToMedia) {
-			#{$property}: toRem($minSize);
-		}
-	}
+    @supports not (#{$property}: $propertyValue) {
+      #{$property}: calc(
+        #{toRem($minSize)} + #{$addSize} * (100vw - #{toRem($widthTo)}) /
+          #{math.div($widthFrom, 16) - math.div($widthTo, 16)}
+      );
+    }
+  }
+  @if $keepSize != 1 and $keepSize != 2 {
+    @media (max-width: $widthToMedia) {
+      #{$property}: toRem($minSize);
+    }
+  }
 }

@@ -10,44 +10,47 @@ import Login from '../components/admin/Login.jsx'
 import ProtectedRoute from './ProtectedRoute.jsx'
 import Contact from '../components/client/Contact.jsx'
 
-const Router = createBrowserRouter([
+const Router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: (
+        <AuthProvider>
+          <Layout />
+        </AuthProvider>
+      ),
+      errorElement: <ErrorPage />,
+      children: [
+        { index: true, element: <Home /> },
+        { path: 'projects', element: <Projects /> },
+        { path: 'courses', element: <Courses /> },
+        { path: 'contact', element: <Contact /> },
+        {
+          path: 'admin',
+          element: (
+            <AuthProvider>
+              <ProtectedRoute />
+            </AuthProvider>
+          ),
+          children: [{ index: true, element: <Admin /> }],
+        },
+      ],
+    },
+    {
+      path: '/login',
+      element: (
+        <AuthProvider>
+          <Login />
+        </AuthProvider>
+      ),
+    },
+    { path: '*', element: <ErrorPage /> },
+  ],
   {
-    path: '/',
-    element: (
-      <AuthProvider>
-        <Layout />
-      </AuthProvider>
-    ),
-    errorElement: <ErrorPage />,
-    children: [
-      { index: true, element: <Home /> },
-      { path: 'projects', element: <Projects /> },
-      { path: 'courses', element: <Courses /> },
-      { path: 'contact', element: <Contact /> },
-      {
-        path: 'admin',
-        element: (
-          <AuthProvider>
-            <ProtectedRoute />
-          </AuthProvider>
-        ),
-        children: [{ index: true, element: <Admin /> }],
-      },
-    ],
+    future: {
+      v7_relativeSplatPath: true,
+    },
   },
-  {
-    path: '/login',
-    element: (
-      <AuthProvider>
-        <Login />
-      </AuthProvider>
-    ),
-  },
-  { path: '*', element: <ErrorPage /> },
-], {
-  future: {
-    v7_relativeSplatPath: true,
-  },
-})
+)
 
 export default Router

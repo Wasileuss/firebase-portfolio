@@ -1,21 +1,21 @@
-@use "sass:math";
+@use 'sass:math';
 
-@use "_reset.scss" as *;
-@use "_variables.scss" as *;
-@use "_functions.scss" as *;
-@use "_fonts.scss" as *;
-@use "_animWords.scss" as *;
-@use "_modal.scss" as *;
-@use "_header.scss" as *;
-@use "_navigation.scss" as *;
-@use "_about.scss" as *;
-@use "_sidebar.scss" as *;
-@use "_courses.scss" as *;
-@use "_projects.scss" as *;
-@use "_contact.scss" as *;
-@use "_admin.scss" as *;
-@use "_footer.scss" as *;
-@use "_error-page.scss" as *;
+@use '_reset.scss' as *;
+@use '_variables.scss' as *;
+@use '_functions.scss' as *;
+@use '_fonts.scss' as *;
+@use '_animWords.scss' as *;
+@use '_modal.scss' as *;
+@use '_header.scss' as *;
+@use '_navigation.scss' as *;
+@use '_about.scss' as *;
+@use '_sidebar.scss' as *;
+@use '_courses.scss' as *;
+@use '_projects.scss' as *;
+@use '_contact.scss' as *;
+@use '_admin.scss' as *;
+@use '_footer.scss' as *;
+@use '_error-page.scss' as *;
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -32,7 +32,7 @@ body {
   min-height: 100vh;
 }
 
-[class*="__container"] {
+[class*='__container'] {
   margin: 0 auto;
   width: 100%;
   max-width: toRem(1250);

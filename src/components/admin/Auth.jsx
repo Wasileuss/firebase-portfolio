@@ -20,7 +20,6 @@ export function AuthProvider({ children }) {
 
   async function initializeUser(user) {
     if (user) {
-
       setCurrentUser({ ...user })
 
       const isEmail = user.providerData.some(
