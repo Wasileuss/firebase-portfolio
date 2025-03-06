@@ -1,10 +1,13 @@
+@use "variables" as *;
+@use "functions" as *;
+
 .about {
   display: flex;
   width: 100%;
   flex-grow: 1;
   gap: 15px;
 
-  @media (max-width: 649.98px) {
+  @media (max-width: toRem(649.98)) {
     flex-direction: column;
   }
 

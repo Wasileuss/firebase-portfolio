@@ -84,11 +84,16 @@
   background-color: #ff5f5f;
 }
 
+.disabled {
+  background-color: #c6c6c6;
+  cursor: not-allowed;
+}
+
 .accordion-content {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  overflow: hidden;
+  overflow-y: auto;
   max-height: 0;
   transition:
     max-height 0.3s ease-in-out,

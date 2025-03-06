@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { auth } from '../../firebaseConfig.js'
 import { onAuthStateChanged } from 'firebase/auth'
+import { authProviderPropTypes } from './authTypes'
+
+AuthProvider.propTypes = authProviderPropTypes
 
 const AuthContext = React.createContext(null)
+export { AuthContext }
 
-export function useAuth() {
-  return useContext(AuthContext)
-}
-
-export function AuthProvider({ children }) {
+export default function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null)
   const [userLoggedIn, setUserLoggedIn] = useState(false)
   const [isEmailUser, setIsEmailUser] = useState(false)
@@ -20,11 +20,10 @@ export function AuthProvider({ children }) {
 
   async function initializeUser(user) {
     if (user) {
-
       setCurrentUser({ ...user })
 
       const isEmail = user.providerData.some(
-        (provider) => provider.providerId === "password"
+        (provider) => provider.providerId === 'password',
       )
       setIsEmailUser(isEmail)
 
@@ -42,7 +41,7 @@ export function AuthProvider({ children }) {
     isEmailUser,
     currentUser,
     setCurrentUser,
-    loading
+    loading,
   }
 
   return (

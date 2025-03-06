@@ -13,7 +13,7 @@
     @include adaptiveValue('padding-bottom', 50, 30, 0, $containerWidth, 768);
   }
 
-  @media (max-width: 649.98px) {
+  @media (max-width: toRem(649.98)) {
     flex-direction: column;
   }
 

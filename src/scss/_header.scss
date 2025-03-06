@@ -1,3 +1,6 @@
+@use "variables" as *;
+@use "functions" as *;
+
 .header {
   position: relative;
   width: 100%;
@@ -19,7 +22,7 @@
     align-items: center;
     justify-content: center;
 
-    @media (max-width: 479.98px) {
+    @media (max-width: toRem(479.98)) {
       text-align: center;
       text-wrap: balance;
     }
@@ -31,7 +34,7 @@
     line-height: 1.2;
     color: #0071a1;
 
-    @media (max-width: 479.98px) {
+    @media (max-width: toRem(479.98)) {
       font-size: 22px;
     }
   }
@@ -42,7 +45,7 @@
     line-height: 1.2;
     color: #0071a1;
 
-    @media (max-width: 479.98px) {
+    @media (max-width: toRem(479.98)) {
       font-size: 14px;
     }
   }
@@ -50,7 +53,7 @@
 
 .icon-menu {
   display: none;
-  @media (max-width: 767.98px) {
+  @media (max-width: toRem(767.98)) {
     display: block;
     position: relative;
     width: 30px;

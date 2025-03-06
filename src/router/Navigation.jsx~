@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { navigation } from './navigation.js'
 import 'animate.css'
 import PropTypes from 'prop-types'
-import { useAuth } from '../hooks/authHooks.js'
+import { useAuth } from '../components/auth/Auth.jsx'
 import { doSignOut } from '../firebaseAuth.js'
 import Button from '../components/ui/Button.jsx'
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 import emailjs from 'emailjs-com'
@@ -29,8 +29,7 @@ const EmailForm = () => {
     emailjs
       .send(serviceId, templateId, values, userId)
       .then(
-        (response) => {
-          console.log('SUCCESS!', response.status, response.text)
+        () => {
           setStatusMessage('Message sent successfully!')
           resetForm()
 
@@ -38,8 +37,7 @@ const EmailForm = () => {
             setStatusMessage(null)
           }, 5000)
         },
-        (error) => {
-          console.log('FAILED...', error)
+        () => {
           setStatusMessage('Failed to send message. Please try again later.')
 
           setTimeout(() => {

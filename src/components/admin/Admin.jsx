@@ -47,10 +47,10 @@ function Admin() {
   const fileInputRefs = [useRef(null), useRef(null), useRef(null)]
   const [showModal, setShowModal] = useState(false)
   const [expandedItem, setExpandedItem] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     document.body.classList.toggle('lock', showModal)
-
     return () => {
       document.body.classList.remove('lock')
     }
@@ -62,6 +62,9 @@ function Admin() {
 
   const handleUpload = async (e, index) => {
     const file = e.target.files[0]
+    if (!file) return
+
+    setIsLoading(true)
 
     if (editItem && oldImgUrls[index]) {
       const imgRef = storageRef(storage, oldImgUrls[index])
@@ -87,7 +90,27 @@ function Admin() {
       })
     } catch (error) {
       console.error('Error uploading file:', error.message)
+    } finally {
+      setIsLoading(false)
     }
+  }
+
+  const resetForm = () => {
+    setTitle('')
+    setLink('')
+    setDesc('')
+    setContent('')
+    setPeriod('')
+    setNum('')
+    setInfo1('')
+    setInfo2('')
+    setInfo3('')
+    setImages(['', '', ''])
+    fileInputRefs.forEach((ref) => {
+      if (ref.current) {
+        ref.current.value = null
+      }
+    })
   }
 
   const handleClick = async () => {
@@ -95,6 +118,8 @@ function Admin() {
       alert('Please complete the required fields')
       return
     }
+
+    setIsLoading(true)
 
     try {
       if (editItem) {
@@ -134,7 +159,14 @@ function Admin() {
       alert(
         'An error occurred while adding/updating the document. Please try again.',
       )
+    } finally {
+      setIsLoading(false)
+      setShowModal(false)
     }
+  }
+
+  const handleCloseModal = () => {
+    resetForm()
     setShowModal(false)
   }
 
@@ -155,29 +187,6 @@ function Admin() {
       setOldImgUrls(itemToEdit.images)
       setShowModal(true)
     }
-  }
-
-  const resetForm = () => {
-    setTitle('')
-    setLink('')
-    setDesc('')
-    setContent('')
-    setPeriod('')
-    setNum('')
-    setInfo1('')
-    setInfo2('')
-    setInfo3('')
-    setImages(['', '', ''])
-    fileInputRefs.forEach((ref) => {
-      if (ref.current) {
-        ref.current.value = null
-      }
-    })
-  }
-
-  const handleCloseModal = () => {
-    resetForm()
-    setShowModal(false)
   }
 
   const handleDelete = async (id) => {
@@ -223,8 +232,9 @@ function Admin() {
           variant="primary"
           type="button"
           onClick={() => setShowModal(true)}
+          disabled={isLoading} // Блокуємо кнопку при завантаженні
         >
-          Add New
+          {isLoading ? 'Loading...' : 'Add New'}
         </Button>
       </form>
       <Modal isOpen={showModal} editItem={editItem} onClose={handleCloseModal}>
@@ -255,6 +265,7 @@ function Admin() {
           handleClick={handleClick}
           editItem={editItem}
           setEditItem={setEditItem}
+          isLoading={isLoading} // Передаємо в AdminForm
         />
       </Modal>
       <ul className="admin__list">

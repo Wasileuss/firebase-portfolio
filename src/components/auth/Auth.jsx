@@ -1,14 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { auth } from '../../firebaseConfig.js'
 import { onAuthStateChanged } from 'firebase/auth'
+import { authProviderPropTypes } from './authTypes'
+import AuthContext from './authContext'
 
-const AuthContext = React.createContext(null)
+AuthProvider.propTypes = authProviderPropTypes
 
-export function useAuth() {
-  return useContext(AuthContext)
-}
-
-export function AuthProvider({ children }) {
+export default function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null)
   const [userLoggedIn, setUserLoggedIn] = useState(false)
   const [isEmailUser, setIsEmailUser] = useState(false)

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { capitalize } from '../../utils/capitalize.js'
 import Button from '../ui/Button.jsx'
 
@@ -64,6 +65,14 @@ function AdminItem({
       </div>
     </li>
   )
+}
+
+AdminItem.propTypes = {
+  value: PropTypes.object.isRequired,
+  expandedItem: PropTypes.string,
+  toggleAccordion: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  handleEdit: PropTypes.func.isRequired,
 }
 
 export default AdminItem

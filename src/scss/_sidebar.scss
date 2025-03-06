@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'functions' as *;
 
 .sidebar {
   display: flex;
@@ -11,19 +12,19 @@
   border: 1px solid #c6c6c6;
   border-radius: 10px;
 
-  @media (max-width: 919.98px) {
+  @media (max-width: toRem(919.98)) {
     flex-direction: row;
     width: 100%;
   }
 
-  @media (max-width: 479.98px) {
+  @media (max-width: toRem(479.98)) {
     flex-direction: column;
     align-items: center;
     gap: 20px;
     width: 100%;
   }
 
-  @media (max-width: 479.98px) {
+  @media (max-width: toRem(479.98)) {
     flex-direction: column;
     padding: 20px;
   }
@@ -42,12 +43,12 @@
       object-position: center;
     }
 
-    @media (max-width: 649.98px) {
+    @media (max-width: toRem(649.98)) {
       width: 180px;
       height: 180px;
     }
 
-    @media (max-width: 479.98px) {
+    @media (max-width: toRem(479.98)) {
       align-self: center;
     }
   }

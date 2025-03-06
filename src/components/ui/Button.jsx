@@ -4,6 +4,7 @@ const buttonVariants = {
   primary: 'primary',
   secondary: 'secondary',
   delete: 'delete',
+  disabled: 'disabled',
 }
 
 const Button = ({ children, variant, className, type, onClick }) => {

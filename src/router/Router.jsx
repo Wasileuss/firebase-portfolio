@@ -1,51 +1,35 @@
-import { createBrowserRouter } from 'react-router-dom'
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+} from 'react-router-dom'
 import Layout from '../pages/Layout'
 import Home from '../components/client/About'
 import ErrorPage from '../pages/404'
 import Admin from '../components/admin/Admin'
 import Projects from '../components/client/Projects'
 import Courses from '../components/client/Courses'
-import { AuthProvider } from '../components/admin/Auth.jsx'
-import Login from '../components/admin/Login.jsx'
+import Login from '../components/auth/Login.jsx'
 import ProtectedRoute from './ProtectedRoute.jsx'
 import Contact from '../components/client/Contact.jsx'
 
 const Router = createBrowserRouter(
-  [
-    {
-      path: '/',
-      element: (
-        <AuthProvider>
-          <Layout />
-        </AuthProvider>
-      ),
-      errorElement: <ErrorPage />,
-      children: [
-        { index: true, element: <Home /> },
-        { path: 'projects', element: <Projects /> },
-        { path: 'courses', element: <Courses /> },
-        { path: 'contact', element: <Contact /> },
-        {
-          path: 'admin',
-          element: (
-            <AuthProvider>
-              <ProtectedRoute />
-            </AuthProvider>
-          ),
-          children: [{ index: true, element: <Admin /> }],
-        },
-      ],
-    },
-    {
-      path: '/login',
-      element: (
-        <AuthProvider>
-          <Login />
-        </AuthProvider>
-      ),
-    },
-    { path: '*', element: <ErrorPage /> },
-  ],
+  createRoutesFromElements(
+    <>
+      <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
+        <Route index element={<Home />} />
+        <Route path="projects" element={<Projects />} />
+        <Route path="courses" element={<Courses />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="admin" element={<ProtectedRoute />}>
+          <Route index element={<Admin />} />
+        </Route>
+      </Route>
+      ,
+      <Route path="/login" element={<Login />} />,
+      <Route path="*" element={<ErrorPage />} />,
+    </>,
+  ),
   {
     future: {
       v7_relativeSplatPath: true,

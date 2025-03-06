@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { doSignInWithEmailAndPassword } from '../../firebaseAuth.js'
-import { useAuth } from './Auth.jsx'
+import { useAuth } from '../../hooks/authHooks.js'
 
 const Login = () => {
   const { userLoggedIn } = useAuth()
@@ -45,7 +45,6 @@ const Login = () => {
       }
     }
   }
-  console.log(userLoggedIn)
 
   return (
     <div>

@@ -1,3 +1,6 @@
+@use "variables" as *;
+@use "functions" as *;
+
 .rotator {
   margin: 20px auto;
 }
@@ -8,7 +11,7 @@
   font-weight: 700;
   text-align: center;
 
-  @media (max-width: 639.98px) {
+  @media (max-width: toRem(639.98)) {
     font-size: 40px;
   }
 
@@ -20,13 +23,13 @@
     flex-wrap: wrap;
     width: 320px;
 
-    @media (max-width: 919.98px) {
+    @media (max-width: toRem(919.98)) {
       width: 100%;
       margin-bottom: 50px;
     }
   }
 
-  @media (max-width: 919.98px) {
+  @media (max-width: toRem(919.98)) {
     flex-direction: column;
   }
 }
@@ -44,7 +47,7 @@
   font-size: 50px;
   width: 300px;
 
-  @media (max-width: 639.98px) {
+  @media (max-width: toRem(639.98)) {
     font-size: 40px;
     transform: translateX(-35%);
   }

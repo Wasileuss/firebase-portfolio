@@ -1,4 +1,4 @@
-import React from 'react'
+import PropTypes from 'prop-types'
 import Input from '../ui/Input.jsx'
 import Button from '../ui/Button.jsx'
 
@@ -27,6 +27,7 @@ function AdminForm({
   handleUpload,
   handleClick,
   editItem,
+  isLoading,
 }) {
   return (
     <form className="admin__form" id="admin-form" name="admin-form">
@@ -121,14 +122,49 @@ function AdminForm({
       ))}
       <Button
         className="admin__button"
-        variant={editItem ? 'secondary' : 'primary'}
+        variant={isLoading ? 'disabled' : editItem ? 'secondary' : 'primary'}
         type="button"
         onClick={handleClick}
+        disabled={isLoading}
       >
-        {editItem ? 'Update' : 'Add'}
+        {isLoading
+          ? editItem
+            ? 'Updating...'
+            : 'Adding...'
+          : editItem
+            ? 'Update'
+            : 'Add'}
       </Button>
     </form>
   )
+}
+
+AdminForm.propTypes = {
+  title: PropTypes.string,
+  setTitle: PropTypes.func,
+  num: PropTypes.string,
+  setNum: PropTypes.func,
+  link: PropTypes.string,
+  setLink: PropTypes.func,
+  desc: PropTypes.string,
+  setDesc: PropTypes.func,
+  content: PropTypes.string,
+  setContent: PropTypes.func,
+  period: PropTypes.string,
+  setPeriod: PropTypes.func,
+  info1: PropTypes.string,
+  setInfo1: PropTypes.func,
+  info2: PropTypes.string,
+  setInfo2: PropTypes.func,
+  info3: PropTypes.string,
+  setInfo3: PropTypes.func,
+  images: PropTypes.array,
+  setImages: PropTypes.func,
+  fileInputRefs: PropTypes.array,
+  handleUpload: PropTypes.func,
+  handleClick: PropTypes.func,
+  editItem: PropTypes.string,
+  isLoading: PropTypes.bool,
 }
 
 export default AdminForm
