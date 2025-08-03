@@ -13,36 +13,27 @@ const AnimatedWords = () => {
 
   useEffect(() => {
     const wordsArray = wordsData.map((word) =>
-      word.text.split('').map(() => 'behind'),
+      word.text.split('').map(() => 'behind')
     )
     setLetterStates(wordsArray)
-
-    animateWordChange()
   }, [])
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      animateWordChange()
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [currentWordIndex])
+    const animateWordChange = () => {
+      const current = currentWordIndex
+      const next = (current + 1) % wordsData.length
 
-  const animateWordChange = () => {
-    const current = currentWordIndex
-    const next = (current + 1) % wordsData.length
+      setLetterStates((prevStates) => {
+        const newStates = [...prevStates]
 
-    setLetterStates((prevStates) => {
-      const newStates = [...prevStates]
+        wordsData[current].text.split('').forEach((_, i) => {
+          setTimeout(() => {
+            newStates[current][i] = 'out'
+            setLetterStates([...newStates])
+          }, i * 100)
+        })
 
-      wordsData[current].text.split('').forEach((_, i) => {
         setTimeout(() => {
-          newStates[current][i] = 'out'
-          setLetterStates([...newStates])
-        }, i * 100)
-      })
-
-      setTimeout(
-        () => {
           newStates[next] = wordsData[next].text.split('').map(() => 'behind')
           setLetterStates([...newStates])
 
@@ -54,13 +45,18 @@ const AnimatedWords = () => {
           })
 
           setCurrentWordIndex(next)
-        },
-        wordsData[current].text.length * 100 + 200,
-      )
+        }, wordsData[current].text.length * 100 + 200)
 
-      return newStates
-    })
-  }
+        return newStates
+      })
+    }
+
+    const interval = setInterval(() => {
+      animateWordChange()
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [currentWordIndex])
 
   return (
     <div className="rotator">
