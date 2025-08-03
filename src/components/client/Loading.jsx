@@ -1,6 +1,6 @@
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types'
 
-function Loading({ text = "Loading..." }) {
+function Loading({ text = 'Loading...' }) {
   return (
     <div className="loading">
       <p>{text}</p>
@@ -9,7 +9,7 @@ function Loading({ text = "Loading..." }) {
 }
 
 Loading.propTypes = {
-  text: PropTypes.string
+  text: PropTypes.string,
 }
 
 export default Loading

@@ -1,6 +1,3 @@
-@use "functions" as *;
-@use "variables" as *;
-
 .admin {
   flex-grow: 1;
 
@@ -41,6 +38,14 @@
     cursor: pointer;
   }
 
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+  }
+
   &__images {
     display: flex;
     gap: 10px;
@@ -58,6 +63,13 @@
     align-items: center;
     gap: 10px;
   }
+
+  &__button {
+    justify-content: center;
+    padding: 5px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 }
 
 .primary {
@@ -72,16 +84,23 @@
   background-color: #ff5f5f;
 }
 
+.disabled {
+  background-color: #c6c6c6;
+  cursor: not-allowed;
+}
+
 .accordion-content {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  overflow: hidden;
+  overflow-y: auto;
   max-height: 0;
-  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+  transition:
+    max-height 0.3s ease-in-out,
+    padding 0.3s ease-in-out;
 }
 
 .accordion-content.expanded {
-  max-height: 500px; /* Достатньо велике значення */
+  max-height: 80vh;
   padding: 10px 0;
 }

@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types'
+import Button from '../ui/Button.jsx'
 
-const Modal = ({isOpen, onClose, children}) => {
+const Modal = ({ isOpen, onClose, children }) => {
   const handleClose = (e) => {
-    if(e.target.classList.contains('modal-overlay')) {
+    if (e.target.classList.contains('modal-overlay')) {
       onClose()
     }
   }
@@ -13,7 +14,13 @@ const Modal = ({isOpen, onClose, children}) => {
           <div className="modal-overlay" onClick={handleClose}>
             <div className="modal-content">
               <div className="modal-form">
-                <button className="modal-button input-border" onClick={() => onClose()}>Close</button>
+                <Button
+                  className="modal-button input-border"
+                  variant="delete"
+                  onClick={() => onClose()}
+                >
+                  Close
+                </Button>
                 {children}
               </div>
             </div>
@@ -27,7 +34,7 @@ const Modal = ({isOpen, onClose, children}) => {
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
   isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired
+  onClose: PropTypes.func.isRequired,
 }
 
 export default Modal
