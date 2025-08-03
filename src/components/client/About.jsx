@@ -9,13 +9,13 @@ const Home = () => {
         <AnimatedWords />
         {infoData.map((item) => (
           <div className="about__description" key={item.id}>
-            <p>{item.title}</p>
-            <p>{item.desc}</p>
-            <p>{item.content}</p>
-            <p>{item.info1}</p>
-            <p>{item.info2}</p>
-            <p>{item.info3}</p>
-            <p>{item.period}</p>
+            <h2>{item.title}</h2>
+            {item.desc && <p>{item.desc}</p>}
+            {item.content && <p>{item.content}</p>}
+            {item.info1 && <p>{item.info1}</p>}
+            {item.info2 && <p>{item.info2}</p>}
+            {item.info3 && <p>{item.info3}</p>}
+            {item.period && <p>{item.period}</p>}
           </div>
         ))}
       </div>

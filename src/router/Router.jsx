@@ -8,6 +8,7 @@ import Home from '../components/client/About'
 import ErrorPage from '../pages/404'
 import Admin from '../components/admin/Admin'
 import Projects from '../components/client/Projects'
+import Experience from '../components/client/Experience'
 import Courses from '../components/client/Courses'
 import Login from '../components/auth/Login.jsx'
 import ProtectedRoute from './ProtectedRoute.jsx'
@@ -19,6 +20,7 @@ const Router = createBrowserRouter(
       <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
         <Route index element={<Home />} />
         <Route path="projects" element={<Projects />} />
+        <Route path="experience" element={<Experience />} />
         <Route path="courses" element={<Courses />} />
         <Route path="contact" element={<Contact />} />
         <Route path="admin" element={<ProtectedRoute />}>

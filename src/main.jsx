@@ -9,6 +9,6 @@ import AuthProvider from './components/auth/Auth.jsx'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <AuthProvider>
-    <RouterProvider future={{ v7_startTransition: true }} router={Router} />,
+    <RouterProvider future={{ v7_startTransition: true }} router={Router} />
   </AuthProvider>,
 )

@@ -5,6 +5,10 @@ import Button from '../ui/Button.jsx'
 function AdminForm({
   title,
   setTitle,
+  subTitle,
+  setSubTitle,
+  subLink,
+  setSubLink,
   num,
   setNum,
   link,
@@ -38,6 +42,20 @@ function AdminForm({
         value={title}
         placeholder="Title*"
         required
+      />
+      <Input
+        className="input-border"
+        type="text"
+        onChange={(e) => setSubTitle(e.target.value)}
+        value={subTitle}
+        placeholder="Subtitle"
+      />
+      <Input
+        className="input-border"
+        type="text"
+        onChange={(e) => setSubLink(e.target.value)}
+        value={subLink}
+        placeholder="Sublink"
       />
       <Input
         className="input-border"
@@ -142,6 +160,10 @@ function AdminForm({
 AdminForm.propTypes = {
   title: PropTypes.string,
   setTitle: PropTypes.func,
+  subTitle: PropTypes.string,
+  setSubTitle: PropTypes.func,
+  subLink: PropTypes.string,
+  setSubLink: PropTypes.func,
   num: PropTypes.string,
   setNum: PropTypes.func,
   link: PropTypes.string,

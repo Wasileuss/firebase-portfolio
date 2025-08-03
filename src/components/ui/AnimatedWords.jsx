@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 const wordsData = [
   { text: 'WordPress', className: 'pomegranate' },
+  { text: 'Frontend', className: 'belize' },
   { text: 'JavaScript', className: 'wisteria' },
   { text: 'React/Next', className: 'belize' },
 ]

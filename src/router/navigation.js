@@ -4,6 +4,10 @@ export const navigation = [
     link: '/',
   },
   {
+    pageName: 'Experience',
+    link: '/experience',
+  },
+  {
     pageName: 'Projects',
     link: '/projects',
   },

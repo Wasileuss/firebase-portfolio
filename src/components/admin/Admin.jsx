@@ -23,6 +23,7 @@ import AdminItem from './AdminItem.jsx'
 
 const options = [
   { value: 'projects' },
+  { value: 'experience' },
   { value: 'courses' },
   { value: 'about' },
   { value: 'info' },
@@ -34,6 +35,8 @@ function Admin() {
   const { data } = useFetchCollection(selectedCategory)
   const [title, setTitle] = useState('')
   const [link, setLink] = useState('')
+  const [subTitle, setSubTitle] = useState('')
+  const [subLink, setSubLink] = useState('')
   const [desc, setDesc] = useState('')
   const [content, setContent] = useState('')
   const [period, setPeriod] = useState('')
@@ -98,6 +101,8 @@ function Admin() {
   const resetForm = () => {
     setTitle('')
     setLink('')
+    setSubTitle('')
+    setSubLink('')
     setDesc('')
     setContent('')
     setPeriod('')
@@ -126,6 +131,8 @@ function Admin() {
         await updateDoc(doc(db, selectedCategory, editItem), {
           title,
           link,
+          subTitle,
+          subLink,
           desc,
           content,
           period,
@@ -142,6 +149,8 @@ function Admin() {
           category: selectedCategory,
           title,
           link,
+          subTitle,
+          subLink,
           desc,
           content,
           period,
@@ -175,6 +184,8 @@ function Admin() {
     if (itemToEdit) {
       setTitle(itemToEdit.title)
       setLink(itemToEdit.link)
+      setSubTitle(itemToEdit.subTitle)
+      setSubLink(itemToEdit.subLink)
       setDesc(itemToEdit.desc)
       setContent(itemToEdit.content)
       setPeriod(itemToEdit.period)
@@ -241,6 +252,10 @@ function Admin() {
         <AdminForm
           title={title}
           setTitle={setTitle}
+          subTitle={subTitle}
+          setSubTitle={setSubTitle}
+          subLink={subLink}
+          setSubLink={setSubLink}
           num={num}
           setNum={setNum}
           link={link}

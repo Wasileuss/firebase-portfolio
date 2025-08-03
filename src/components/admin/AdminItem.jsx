@@ -22,6 +22,8 @@ function AdminItem({
       >
         <p className="input-border">Title: {value.title}</p>
         <p className="input-border input-border--break">Link: {value.link}</p>
+        <p className="input-border">Subtitle: {value.subTitle}</p>
+        <p className="input-border input-border--break">Sublink: {value.subLink}</p>
         <p className="input-border">Description: {value.desc}</p>
         <p className="input-border">Content: {value.content}</p>
         <p className="input-border">Period: {value.period}</p>
